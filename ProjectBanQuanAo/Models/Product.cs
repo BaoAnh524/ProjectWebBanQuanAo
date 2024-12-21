@@ -1,28 +1,28 @@
-﻿namespace ProjectBanQuanAo.Models
-{
-    public partial class Product
-    {
-        public int ProductId { get; set; }
-        public int id { get; set; }
-        public string? ShortDesc { get; set; }
-        public string? Description { get; set; }
-        public int? CatId { get; set; }
-        public int? Price { get; set; }
-        public int? Discount { get; set; }
-        public string? Thumb { get; set; }
-        public string? Video { get; set; }
-        public DateTime? DateCreated { get; set; }
-        public DateTime? DateModified { get; set; }
-        public bool BestSellers { get; set; }
-        public bool HomeFlag { get; set; }
-        public bool Active { get; set; }
-        public string? Tags { get; set; }
-        public string? Title { get; set; }
-        public string? Alias { get; set; }
-        public string? MetaDesc { get; set; }
-        public string? MetaKey { get; set; }
-        public int? UnitsInStock { get; set; }
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-        public virtual Category? Cat { get; set; }
+namespace ProjectBanQuanAo.Models
+{
+    public class Product 
+    {
+        [Key]
+        public int id { get; set; }
+        [Required]
+        public string name { get; set; }
+        public string slug { get; set; }
+
+        [Required]
+        public string description { get; set; }
+        [Required]
+        public decimal Price { get; set; }
+        public Category Category { get; set; }
+        public Brand brand { get; set; }
+
+        public string? fileNameImg { get; set; }
+
+        [NotMapped]
+        [FileExtensions]
+        public IFormFile ImageUpload { get; set; }
+
     }
 }

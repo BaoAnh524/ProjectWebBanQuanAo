@@ -2,7 +2,7 @@
 
 namespace ProjectBanQuanAo.Models
 {
-    public class BrandModel
+    public class Brand 
     {
         [Key]
         public int id { get; set; }
