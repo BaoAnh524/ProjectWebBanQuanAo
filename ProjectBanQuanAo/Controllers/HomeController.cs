@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectBanQuanAo.Models;
+using ProjectBanQuanAo.Repository;
 using System.Diagnostics;
 
 namespace ProjectBanQuanAo.Controllers
@@ -7,15 +8,19 @@ namespace ProjectBanQuanAo.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+		private readonly DataContext _context;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, DataContext context
+			)
 		{
+			_context = context;
 			_logger = logger;
 		}
 
 		public IActionResult Index()
 		{
-			return View();
+			var products = _context.Products.ToList();
+			return View(products);
 		}
 
 		public IActionResult Privacy()

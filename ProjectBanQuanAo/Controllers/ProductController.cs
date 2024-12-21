@@ -3,17 +3,21 @@ using ProjectBanQuanAo.Repository;
 
 namespace ProjectBanQuanAo.Controllers
 {
-    public class ShopController : Controller
+    public class ProductController : Controller
     {
         private readonly DataContext _context;
-        public ShopController(DataContext context)
+        public ProductController(DataContext context)
         {
             _context = context;
         }
         public IActionResult Index()
         {
-            var products = _context.Products.ToList();
-            return View(products);
+            return View();
+        }
+        public async Task<IActionResult> IndexAsync(string id= "")
+        {
+
+            return View();
         }
     }
 }
