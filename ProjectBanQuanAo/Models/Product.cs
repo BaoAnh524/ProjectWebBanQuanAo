@@ -3,7 +3,7 @@
     public partial class Product
     {
         public int ProductId { get; set; }
-        public string ProductName { get; set; } = null!;
+        public int id { get; set; }
         public string? ShortDesc { get; set; }
         public string? Description { get; set; }
         public int? CatId { get; set; }
