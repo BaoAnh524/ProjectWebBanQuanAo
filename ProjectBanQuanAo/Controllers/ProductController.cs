@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProjectBanQuanAo.Repository;
 
 namespace ProjectBanQuanAo.Controllers
@@ -18,6 +19,20 @@ namespace ProjectBanQuanAo.Controllers
         {
 
             return View();
+        }
+        public async Task<IActionResult> Details(int id)
+        {
+            var product = await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.brand)
+                .FirstOrDefaultAsync(p => p.id == id);
+
+            if (product == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
         }
     }
 }
